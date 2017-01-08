@@ -1,0 +1,29 @@
+if test X$SHMARKS_DIR == X; then
+    export SHMARKS_DIR=$HOME/.bookmarks
+fi
+
+mkdir -p $SHMARKS_DIR
+
+function mark {
+ ln -f -s $PWD $SHMARKS_DIR/$1;
+}
+
+# This changes your working directory to bookmarked one.
+# note -P argument to cd: it makes sure we don't end up in
+# $SHMARKS_DIR/BOOKMARK_NAME directory.
+function go {
+ cd -P $SHMARKS_DIR/$1;
+}
+
+# Simple alias to see bookmarks ans where are they pointing
+alias lsmarks="ls -l $SHMARKS_DIR"
+
+# This function makes bash completion work
+function _my_bookmark_complete {
+ local word=${COMP_WORDS[COMP_CWORD]};
+ local bookmark_list=$(ls -1 $SHMARKS_DIR);
+
+ COMPREPLY=($(compgen -W "${bookmark_list}" -- ${word}))
+}
+
+complete -F _my_bookmark_complete go
