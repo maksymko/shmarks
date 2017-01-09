@@ -1,6 +1,6 @@
 # shmarks
 
-Dead simple bash (sh?) bookmarks system, which completion.
+Dead simple bash (sh?) bookmarks system, with Tab completion.
 
 ## Installation
 
@@ -45,7 +45,7 @@ To go to the bookmarked directory:
 go bookmark_name
 ```
 
-You can hit <Tab> for autocompletion.
+You can hit Tab for bookmark name completion.
 
 I didn't add a special command to remove bookmarks. Mostly because I don't do it often :)
 You can just delete symlink, if you no longer need it:
